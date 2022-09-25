@@ -10,7 +10,7 @@ contract HTLC {
     address private issuer; 
 
     modifier onlyIssuer {
-        require(msg.sender == issuer, "Sender is not issuer"); 
+        require(msg.sender == issuer, "Sender can't do this, only issuer can"); 
         _; 
     }
 
@@ -22,13 +22,13 @@ contract HTLC {
         issuer = msg.sender; 
     }
  
-    function claim(string memory _hash) public returns(bool result) {
+    function claim(string memory _hash) external returns(bool result) {
        require(digest == keccak256(abi.encodePacked(_hash)), "Wrong hash");
        selfdestruct(payable(destination));
        return true;
        }
 
-    function refund() onlyIssuer public returns(bool result) {
+    function refund() onlyIssuer external returns(bool result) {
         require(block.timestamp >= timeOut, "It's not time yet");
         selfdestruct(payable(issuer));
         return true;
