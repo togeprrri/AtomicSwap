@@ -16,7 +16,7 @@ async function main() {
 
     const timeLimit = 48;
 
-    const dist = await Contract.deploy(hash, dest1, timeLimit);
+    const dist = await Contract.deploy(hash, dest2, timeLimit);
   
     console.log("Contract address:", dist.address);
   }

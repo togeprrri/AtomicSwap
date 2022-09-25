@@ -14,9 +14,9 @@ contract HTLC {
         _; 
     }
 
-    constructor (bytes32 _hash, address _dest, uint256 _timeLimit) {
+    constructor (string memory _hash, address _dest, uint256 _timeLimit) {
         require(digest != 0 || _dest != address(0) || _timeLimit != 0, "Wrong deployment arguments");
-        digest = _hash;
+        digest = keccak256(abi.encodePacked(_hash));
         destination = _dest;
         timeOut = block.timestamp + (_timeLimit * 1 hours);
         issuer = msg.sender; 
