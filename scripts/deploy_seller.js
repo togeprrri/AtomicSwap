@@ -7,7 +7,7 @@ async function main() {
   
     console.log("Account balance:", (await deployer.getBalance()).toString());
   
-    const Contract = await ethers.getContractFactory("HTLC-buyer");
+    const Contract = await ethers.getContractFactory("HTLC_seller");
 
     const hash = "Some random phrase";
 

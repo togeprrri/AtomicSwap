@@ -8,7 +8,6 @@ contract HTLC_buyer {
     uint256 public timeOut;
     address private seller;
 
-
     modifier onlyIssuer {
         require(msg.sender == buyer, "Sender can't do this, only issuer can"); 
         _; 
@@ -30,7 +29,7 @@ contract HTLC_buyer {
     function claim(string memory _hash) external returns(bool) {
        require(msg.sender == seller, "Sender is not seller");
        secret = sha256(abi.encodePacked(_hash));
-       selfdestruct(payable(seller));
+       payable(seller).transfer(address(this).balance);
        return true;
        }
 
