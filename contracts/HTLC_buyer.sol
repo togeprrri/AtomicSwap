@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.17;
 
-contract HTLC_seller {
+contract HTLC_buyer {
     bytes32 private secret;
     address public buyer;
     uint256 public timeOut;
